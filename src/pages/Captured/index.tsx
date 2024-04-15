@@ -51,24 +51,26 @@ export default function Captured() {
       <S.ButtonContainer>
         <Button onClick={() => {navigation('/')}}>Voltar</Button>
       </S.ButtonContainer>
-      {
-        list.map(data => {
-          return (
-            <div key={data?.id}>
-              <button onClick={() => handleDelete(data.id)}>delete</button>
-              <Favorited
-                name={data?.name}
-                height={data?.height}
-                weight={data?.weight}
-                type1={data?.type1}
-                type2={data?.type2}
-                id={data?.id}
-                sprite={data?.sprite}
-              />
-            </div>
-          )
-        })
-      }
+      <S.Content>
+        {
+          list.map(data => {
+            return (
+              <div key={data?.id}>
+                <button onClick={() => handleDelete(data.id)}>delete</button>
+                <Favorited
+                  name={data?.name}
+                  height={data?.height}
+                  weight={data?.weight}
+                  type1={data?.type1}
+                  type2={data?.type2}
+                  id={data?.id}
+                  sprite={data?.sprite}
+                />
+              </div>
+            )
+          })
+        }
+      </S.Content>
     </Container>
   )
 }

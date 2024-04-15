@@ -1,6 +1,7 @@
 import styled from 'styled-components'	
 import {colors} from '../../../theme/colors'
 import {sizes} from '../../../theme/sizes'
+import { fonts } from '../../../theme/fonts'
 
 
 export const Container = styled.div`
@@ -10,13 +11,16 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   margin-bottom: 20px;
+  font-size: ${sizes.body};
+  font-family: ${fonts.heading};
 `
 
 export const Label = styled.label`
   color: ${colors.text};
   font-size: ${sizes.body};
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 5px;
+  font-size: 16px;
 `
 export const Input = styled.input`
   width: 100%;
@@ -25,4 +29,5 @@ export const Input = styled.input`
   padding: 10px;
   background: ${colors.background};
   color: ${colors.text};
+  font-size: x-large;
 `

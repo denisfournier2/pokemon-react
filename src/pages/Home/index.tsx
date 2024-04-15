@@ -10,8 +10,9 @@ import { Input } from "../../components/atoms/input"
 import Toasty from "../../components/atoms/toasty"
 import { Pokemon } from "../../components/molecules/pokemon"
 import { IPokemonProps } from "../../components/molecules/pokemon/types"
-import { Api, create } from "../../service/api"
+import { Api, create, listPokemonApi } from "../../service/api"
 import * as S from "./styles"
+import { ILocalPokemonProps } from "../../components/molecules/favorited/types"
 import { CgPokemon } from "react-icons/cg"
 
 export default function Home() {
@@ -71,7 +72,7 @@ export default function Home() {
       <Header />
       <S.Content>
         <S.InputContainer>
-          <Input label="Insert below the pokemon name that you want to search" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+          <Input label="Digite aqui o nome do pokemon do seu pokemon preferido" name="name" value={name} onChange={(e) => setName(e.target.value)} />
         </S.InputContainer>
         <S.ButtonContainer>
           <Button onClick={handleSearch} loading={loading}>
@@ -94,7 +95,7 @@ export default function Home() {
           </>
         )} 
         {showPokemon && (
-          <Pokemon
+          <><Pokemon
             key={data?.id}
             name={data?.name}
             height={data?.height}
@@ -102,18 +103,16 @@ export default function Home() {
             types={data?.types}
             url={data?.url}
             id={data?.id}
-            sprites={data?.sprites}
-          />
+            sprites={data?.sprites} /><S.ButtonContainer>
+              <Button onClick={() => handleCreate(data)} loading={false}>
+                <CgPokemon />
+                Capturar!
+              </Button>
+            </S.ButtonContainer></>
         )}
         <S.ButtonContainer>
-          <Button onClick={() => handleCreate(data) }>
-            <CgPokemon />
-            Capturar!
-          </Button>
-        </S.ButtonContainer>
-        <S.ButtonContainer>
           <Button onClick={() => navigation('/captured')} >
-            Ver meu time
+            Meus pokemons favoritos!
             <MdOutlineCatchingPokemon size={30} />
           </Button>
         </S.ButtonContainer>

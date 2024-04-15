@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../../theme/colors";
 import { sizes } from "../../../theme/sizes";
+import { fonts } from "../../../theme/fonts";
 
 
 export const Container = styled.div`
@@ -15,6 +16,7 @@ export const Container = styled.div`
   border-radius: 5px;
   box-shadow: 0px 4px 4px ${colors.shadow};
   margin: 16px 0 16px 0;
+  font-family: ${fonts.heading};
   
   @media (max-width: 1210px) {
     width: 30vw;

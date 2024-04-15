@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { CgPokemon } from "react-icons/cg";
-import { MdOutlineCatchingPokemon } from "react-icons/md";
 import { colors } from "../../../theme/colors";
-import { Button } from '../../atoms/button';
 import * as S from './styles';
 import { ILocalPokemonProps } from "./types";
 
 export const Favorited = (props: ILocalPokemonProps) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  
   const handleFavorite = () => {
     isFavorite ? setIsFavorite(false) : setIsFavorite(true)
   }
@@ -43,16 +41,10 @@ export const Favorited = (props: ILocalPokemonProps) => {
       {props.type2 &&
         <S.StatusLine>
           <S.StatusTitle>Tipo:</S.StatusTitle>
-          <S.StatusText>{props.type1}</S.StatusText>
+          <S.StatusText>{props.type2}</S.StatusText>
         </S.StatusLine>
       }
       <S.PokemonImage src={props?.sprite} alt="" />
-      <S.ButtonContainer>
-        <Button onClick={() => null } loading={false}>
-          {isFavorite ?  <MdOutlineCatchingPokemon /> : <CgPokemon /> }
-          Liberar
-        </Button>
-      </S.ButtonContainer>
     </S.Container>
   )
 }

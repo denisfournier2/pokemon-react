@@ -24,15 +24,17 @@ export const Content = styled.section`
 export const InputContainer = styled.div`
   width: 50%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  gap: 20px;
 `;
 
 export const ButtonContainer = styled.div`
   width: 30%;
   height: 50px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
