@@ -1,5 +1,5 @@
 export interface ILocalPokemonProps {
-  id: number
+  id?: number
   name: string
   sprite: string
   type1: string

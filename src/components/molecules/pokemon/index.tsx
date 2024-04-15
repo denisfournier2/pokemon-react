@@ -1,16 +1,8 @@
-import { useState } from "react";
-import { CgPokemon } from "react-icons/cg";
-import { MdOutlineCatchingPokemon } from "react-icons/md";
 import { colors } from "../../../theme/colors";
-import { Button } from '../../atoms/button';
 import * as S from './styles';
 import { IPokemonProps } from "./types";
 
 export const Pokemon = (props: IPokemonProps) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const handleFavorite = () => {
-    isFavorite ? setIsFavorite(false) : setIsFavorite(true)
-  }
 
   const getTypeColor = (type: string) => {
     return colors[type.toLowerCase()] || colors.black;
@@ -45,12 +37,6 @@ export const Pokemon = (props: IPokemonProps) => {
         )
       })}
       <S.PokemonImage src={props?.sprites?.front_default} alt="" />
-      <S.ButtonContainer>
-        <Button onClick={() => handleFavorite() } loading={false}>
-          {isFavorite ?  <MdOutlineCatchingPokemon /> : <CgPokemon /> }
-          Capture
-        </Button>
-      </S.ButtonContainer>
     </S.Container>
   )
 }

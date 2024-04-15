@@ -14,4 +14,5 @@ export interface IPokemonProps {
   ]
   weight: number
   height: number
+  onSave?: (body: IPokemonProps) => void
 }
