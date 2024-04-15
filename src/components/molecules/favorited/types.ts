@@ -6,5 +6,4 @@ export interface ILocalPokemonProps {
   type2: string
   weight: string
   height: string
-  onDelete: unknown
 }

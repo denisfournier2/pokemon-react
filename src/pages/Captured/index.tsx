@@ -5,7 +5,7 @@ import { Container } from "../../components/atoms/container";
 import { Header } from "../../components/atoms/header";
 import * as S from './styles';
 import { ILocalPokemonProps } from "../../components/molecules/favorited/types";
-import { Localhost } from "../../service/api";
+import { Localhost, listPokemons, onDelete } from "../../service/api";
 import { Favorited } from "../../components/molecules/favorited";
 
 export default function Captured() {
@@ -16,38 +16,28 @@ export default function Captured() {
   const [showPokemon, setShowPokemon] = useState<boolean>(false);
   const [list, setList] = useState<ILocalPokemonProps[]>([] as ILocalPokemonProps[]);
 
-  const handleList = () => {
-    setLoading(true);
-    Localhost.get(`pokemon`)
-      .then((response) => {
-        setLoading(false);
-        if (response.data.count === 1302) { 
-          setError(true); 
-          return; 
-        }
-        setList(response.data);
-        setShowPokemon(true);
-        setError(false);
-      })
-      .catch((e) => {
-        setLoading(false);
-        setError(true);
-        console.log(e);
-      });
-  };
+  const handleList = async () => {
+    try {
+      const data = await listPokemons()
+      setLoading(true)
+      setList(data)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  const onDelete = (id: number) => {
-    setLoading(true);
-    Localhost.delete(`pokemon/${id}`)
-      .then((response) => {
-        setLoading(false);
-      })
-      .catch((e) => {
-        setLoading(false);
-        setError(true);
-        console.log(e);
-      });
-  };
+  const handleDelete = async (id: number) => {
+    try {
+      const data = await onDelete(id)
+      setLoading(true)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     handleList()
@@ -64,17 +54,18 @@ export default function Captured() {
       {
         list.map(data => {
           return (
-            <Favorited
-              key={data?.id}
-              name={data?.name}
-              height={data?.height}
-              weight={data?.weight}
-              type1={data?.type1}
-              type2={data?.type2}
-              id={data?.id}
-              sprite={data?.sprite}
-              onDelete={onDelete(data?.id)}
-            />
+            <div key={data?.id}>
+              <button onClick={() => handleDelete(data.id)}>delete</button>
+              <Favorited
+                name={data?.name}
+                height={data?.height}
+                weight={data?.weight}
+                type1={data?.type1}
+                type2={data?.type2}
+                id={data?.id}
+                sprite={data?.sprite}
+              />
+            </div>
           )
         })
       }

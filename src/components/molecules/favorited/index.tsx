@@ -48,7 +48,7 @@ export const Favorited = (props: ILocalPokemonProps) => {
       }
       <S.PokemonImage src={props?.sprite} alt="" />
       <S.ButtonContainer>
-        <Button onClick={() => handleFavorite() } loading={false}>
+        <Button onClick={() => null } loading={false}>
           {isFavorite ?  <MdOutlineCatchingPokemon /> : <CgPokemon /> }
           Liberar
         </Button>
