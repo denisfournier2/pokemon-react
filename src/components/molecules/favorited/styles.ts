@@ -17,7 +17,7 @@ export const Container = styled.div`
   box-shadow: 0px 4px 4px ${colors.shadow};
   margin: 16px 0 16px 0;
   font-family: ${fonts.heading};
-  
+
   @media (max-width: 1210px) {
     width: 30vw;
     height: 30vw;
@@ -45,10 +45,10 @@ export const Container = styled.div`
 ` 
 export const Title = styled.h1`
   color: ${colors.text};
-  font-size: ${sizes.heading};
+  font-size: ${sizes.subheading};
   font-weight: 600;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `
 export const StatusLine = styled.div`
   width: 100%;
@@ -61,7 +61,7 @@ export const StatusLine = styled.div`
 `
 export const StatusTitle = styled.span`
   color: ${colors.text};
-  font-size: ${sizes.subheading};
+  font-size: ${sizes.body};
   font-weight: 600;
   text-align: center;
   margin-bottom: 5px;
@@ -70,7 +70,7 @@ export const StatusTitle = styled.span`
 `
 export const StatusText = styled.span`
   color: ${colors.text};
-  font-size: ${sizes.subheading};
+  font-size: ${sizes.body};
   text-align: center;
   margin-bottom: 5px;
   margin-right: 5px;

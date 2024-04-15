@@ -13,7 +13,7 @@ export const ButtonContainer = styled.div`
   @media (max-width: 320px) {
     width: 50%;
   }
-`;
+`
 
 export const Content = styled.div`
   width: 80%;
@@ -28,4 +28,14 @@ export const Content = styled.div`
   /* @media (max-width: 320px) {
     width: 50%;
   } */
-`;
+`
+
+export const DeleteButton = styled.button`
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  position: absolute;
+  margin: 10px;
+  z-index: 99;
+  color: #EF3D42;
+`

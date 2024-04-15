@@ -50,7 +50,7 @@ export default function Home() {
         const requisition = await create({
           name: body.name,
           type1: body.types[0].type.name,
-          type2: body.types[1]?.type?.name ? body.types[1].type.name : '',
+          type2: body.types[1]?.type?.name ? body.types[1].type.name : 'Não possui',
           height: `${body.height}`,
           weight: `${body.weight}`,
           sprite: body.sprites.front_default

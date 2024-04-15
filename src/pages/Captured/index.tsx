@@ -7,13 +7,16 @@ import * as S from './styles';
 import { ILocalPokemonProps } from "../../components/molecules/favorited/types";
 import { Localhost, listPokemons, onDelete } from "../../service/api";
 import { Favorited } from "../../components/molecules/favorited";
+import { ToastContainer } from "react-toastify";
+import Toasty from "../../components/atoms/toasty";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Captured() {
   const navigation = useNavigate()
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [showPokemon, setShowPokemon] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
   const [list, setList] = useState<ILocalPokemonProps[]>([] as ILocalPokemonProps[]);
 
   const handleList = async () => {
@@ -29,11 +32,14 @@ export default function Captured() {
   }
 
   const handleDelete = async (id: number) => {
+    setLoading(true)
+    console.log("aaa")
     try {
       const data = await onDelete(id)
-      setLoading(true)
+      setSuccess(true)
     } catch (error) {
       console.log(error)
+      setError(true)
     } finally {
       setLoading(false)
     }
@@ -41,9 +47,7 @@ export default function Captured() {
 
   useEffect(() => {
     handleList()
-  }, [])
-
-  console.log(list)
+  }, [success])
 
   return(
     <Container>
@@ -56,7 +60,7 @@ export default function Captured() {
           list.map(data => {
             return (
               <div key={data?.id}>
-                <button onClick={() => handleDelete(data.id)}>delete</button>
+                <S.DeleteButton onClick={() => handleDelete(data.id)}><IoMdCloseCircle /></S.DeleteButton>
                 <Favorited
                   name={data?.name}
                   height={data?.height}
@@ -70,6 +74,18 @@ export default function Captured() {
             )
           })
         }
+        {error && (
+          <>
+            <ToastContainer />
+            <Toasty message={`⚠️ Pokemon ${name} não pode ser excluído.`} />
+          </>
+        )}
+        {success && (
+          <>
+            <ToastContainer />
+            <Toasty message={`🚀 ${name} foi excluído dos seus favoritos.`} />
+          </>
+        )} 
       </S.Content>
     </Container>
   )
